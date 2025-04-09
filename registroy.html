@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/registro.css">
+    <title>Registro de Usuario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#consultar').on('click', function(event) {
+                event.preventDefault();
+                var matricula = $('#matricula').val();
+
+                if (matricula) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'registrar_estudiante.php',
+                        data: {consulta: "1", matricula: matricula},
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.error) {
+                                alert(response.error);
+                            } else {
+                                $('#nombre').val(response.Nombre);
+                                $('#apellido').val(response.Apellido);
+                                $('#sexo').val(response.Sexo);
+                                $('#telefono').val(response.Telefono);
+                                $('#email').val(response.Email);
+                            }
+                        }
+                    });
+                } else {
+                    alert("Por favor, ingresa una matrícula.");
+                }
+            });
+
+            $('#registroForm').on('submit', function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'registrar_estudiante.php',
+                    data: $(this).serialize() + '&enviar=true',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.success);
+                            $('#registroForm')[0].reset(); // Reiniciar el formulario
+                        } else {
+                            alert(response.error);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="registroForm" method="POST">
+        <div class="container">
+            <h1>CONSULTA DE ESTUDIANTES</h1>
+            <br>
+            <div class="inputs">
+                <label for="matricula">MATRÍCULA</label>
+                <input type="text" id="matricula" name="matricula" required>
+                <button id="consultar" type="button">CONSULTAR MATRICULA</button>
+                
+                <label for="nombre">NOMBRE</label>
+                <input type="text" id="nombre" name="nombre" required>
+              
+                <label for="apellido">APELLIDO</label>
+                <input type="text" id="apellido" name="apellido" required>
+
+                <label for="tipoSolicitud">TIPO DE SOLICITUD</label>
+                <select id="tipoSolicitud" name="tipoSolicitud" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Realizar Tarea">Realizar Tarea</option>
+                    <option value="Uso de Computador">Uso de Computador</option>
+                    <option value="Solicitud de Libro">Solicitud de Libro</option>
+                    <option value="Devolucion de Libro">Devolución de Libro</option>
+                    <option value="Uso de Cubiculo">Uso de Cubículo</option>
+                    <option value="Visitas">Visitas</option>
+                    <option value="Proceso de Admision">Proceso de Admisión</option>
+                    <option value="Seleccion de Asignatura">Selección de Asignatura</option>
+                    <option value="Orientacion en el Uso de Plataformas de Estudio">Orientación en el Uso de Plataformas de Estudio</option>
+                    <option value="Otros">Otros</option>
+                </select>
+
+                <label for="sexo">SEXO</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+
+                <label for="telefono">TELÉFONO</label>
+                <input type="tel" id="telefono" name="telefono" required>
+
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="rol">ROL DE USUARIO</label>
+                <select id="rol" name="rol" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Estudiante">Estudiante</option>
+                    <option value="Visitante">Invitado</option>
+                    <option value="Administrativo">Administrativo</option>
+                    <option value="Maestros">Maestros</option>
+                </select>
+
+                <button type="submit" name="enviar">ENVIAR</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
