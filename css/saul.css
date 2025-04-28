@@ -1,0 +1,217 @@
+/* CSS/saul.css */
+ /* CSS/saul.css */
+ /* Estilos CSS para organizar la página y mejorar la visualización */
+ body {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+   }
+  
+   #sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background: #343a40;
+    color: white;
+    transition: left 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    padding-top: 20px; /* Añadido padding en la parte superior para separar del borde */
+   }
+  
+   #sidebar.active {
+    left: 0;
+   }
+  
+   #sidebar .nav-link {
+    color: white;
+    font-size: 16px; /* Tamaño de fuente reducido para la barra lateral */
+    padding: 12px; /* Padding reducido para los items de navegación */
+    text-align: left; /* Text-align izquierda para alinear los links */
+    border-radius: 0; /* Eliminar bordes redondeados en los links */
+    margin: 0; /* Eliminar márgenes en los links */
+    /* Eliminado el borde gris de los links de la barra lateral */
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: block; /* Asegurar que los links ocupen todo el ancho */
+   }
+  
+   #sidebar .nav-link:last-child {
+    border-bottom: none; /* Eliminar el border inferior del último link */
+   }
+  
+   #sidebar .nav-link:hover {
+    background: #495057; /* Cambio de color al hover */
+    transform: none; /* Eliminar efecto de escala al hover */
+   }
+  
+   #sidebar .nav-link.active {
+    color: white;
+    background-color: #1e2125; /* Color de fondo para el link activo */
+   }
+  
+   #sidebar img {
+    width: 100px; /* Tamaño del logo ajustado */
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    border: 3px solid white; /* Borde blanco alrededor del logo */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Sombra suave del logo */
+   }
+  
+   #main-content {
+    transition: margin-left 0.3s ease;
+    padding: 20px; /* Padding reducido del contenido principal */
+   }
+  
+   #main-content.active {
+    margin-left: 250px;
+   }
+  
+   #toggle-sidebar {
+    font-size: 20px; /* Tamaño del icono de toggle ajustado */
+    background-color: rgb(161, 3, 3);
+    border: none;
+    color: white;
+    padding: 8px 15px; /* Padding del botón de toggle ajustado */
+    cursor: pointer;
+    border-radius: 5px; /* Radio del borde del botón de toggle ajustado */
+    position: fixed; /* Posición fixed para mantener el botón visible */
+    top: 10px;
+    left: 10px;
+    transition: background 0.3s ease;
+    z-index: 1000; /* Z-index alto para asegurar que esté sobre otros elementos */
+   }
+  
+   #toggle-sidebar:hover {
+    background-color: rgb(103, 0, 0);
+   }
+  
+   .container {
+    max-width: 1100px; /* Ancho máximo del contenedor ajustado */
+    margin: 20px auto;
+    padding: 25px; /* Padding del contenedor ajustado */
+    background: #ffffff;
+    border-radius: 8px; /* Radio del borde del contenedor ajustado */
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Sombra suave del contenedor */
+   }
+  
+   header.main-header {
+    margin-bottom: 25px; /* Margen inferior del header ajustado */
+    padding-bottom: 15px; /* Padding inferior del header ajustado */
+   }
+  
+   header.main-header h1 {
+    font-size: 2rem; /* Tamaño de fuente del título principal ajustado */
+    margin-bottom: 15px; /* Margen inferior del título ajustado */
+   }
+  
+   .logo-container {
+    width: 90px; /* Ancho del contenedor del logo ajustado */
+    height: 90px; /* Alto del contenedor del logo ajustado */
+    margin-right: 15px; /* Margen derecho para separar el logo del título */
+   }
+  
+   .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+   }
+  
+   footer {
+    text-align: center;
+    padding: 15px; /* Padding del footer ajustado */
+    background-color: transparent; /* Footer transparente */
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem; /* Tamaño de fuente del footer ajustado */
+   }
+  
+   .form-group {
+    margin-bottom: 18px; /* Margen inferior de los form-group ajustado */
+   }
+  
+   .form-group label {
+    display: block;
+    margin-bottom: 6px; /* Margen inferior de las etiquetas ajustado */
+    color: #555;
+    font-size: 1rem; /* Tamaño de fuente de las etiquetas ajustado */
+    font-weight: 500; /* Peso de la fuente de las etiquetas ajustado */
+   }
+  
+   .form-group input[type="text"],
+   .form-group input[type="email"],
+   .form-group select {
+    width: calc(100% - 16px); /* Ajuste en el ancho de los inputs */
+    padding: 8px; /* Padding de los inputs ajustado */
+    border-radius: 4px; /* Radio del borde de los inputs ajustado */
+    /* Eliminando el borde gris de los campos de formulario */
+    border: none; /* Se elimina la línea de borde gris */
+    font-size: 1rem; /* Tamaño de fuente de los inputs ajustado */
+    color: #444;
+   }
+  
+   .btn-submit {
+    background-color: rgb(161, 3, 3);
+    color: white;
+    padding: 10px 20px; /* Padding del botón submit ajustado */
+    border: none;
+    border-radius: 5px; /* Radio del borde del botón submit ajustado */
+    cursor: pointer;
+    font-size: 1rem; /* Tamaño de fuente del botón submit ajustado */
+    transition: background-color 0.3s ease;
+   }
+  
+   .btn-submit:hover {
+    background-color: rgb(103, 0, 0);
+   }
+  
+   .mensaje-respuesta {
+    margin-top: 15px; /* Margen superior del mensaje de respuesta ajustado */
+    padding: 12px; /* Padding del mensaje de respuesta ajustado */
+    border-radius: 4px; /* Radio del borde del mensaje de respuesta ajustado */
+    text-align: center;
+    font-weight: 500; /* Peso de fuente del mensaje de respuesta ajustado */
+    font-size: 0.9rem; /* Tamaño de fuente del mensaje de respuesta ajustado */
+    /* Eliminando los bordes grises de los mensajes de respuesta */
+    border: none; /* Se elimina la línea de borde gris */
+   }
+  
+   .mensaje-respuesta.exito {
+    background-color: #e2f7e5;
+    color: #1a6127;
+    }
+  
+    .mensaje-respuesta.error {
+    background-color: #fdedee;
+    color: #a92a33;
+    }
+  
+   .main-header {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Gap del header ajustado */
+    border-bottom: 1.5px solid rgb(161, 3, 3); /* Grosor del border inferior del header ajustado */
+   }
+  
+   .logo-container {
+    width: 70px; /* Ancho del contenedor del logo ajustado */
+    height: 70px; /* Alto del contenedor del logo ajustado */
+   }
+  
+   .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+   }
+
+   /* CSS para el footer */
+   .footer-text {
+    text-align: center;
+    color: black;
+   }

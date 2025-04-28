@@ -1,0 +1,97 @@
+/* General body styles */
+body {
+    margin: 0;
+    font-family: 'Atkinson Hyperlegible', Arial, sans-serif;
+    background-color: #323E48; /* Color de fondo principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #FFF; /* Blanco */
+}
+
+/* Login container */
+.login-container {
+    background-color: #FFFFFF; /* Blanco puro */
+    color: #323E48; /* Azul grisáceo */
+    padding: 40px;
+    border-radius: 12px; /* Bordes suaves */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Sombra profesional */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Logo */
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Title styles */
+.login-container h1 {
+    margin-bottom: 20px;
+    color: #BF2026; /* Rojo intenso */
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Input group */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #323E48; /* Azul grisáceo */
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px; /* Bordes suaves */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #F9F9F9;
+}
+
+.input-group input:focus {
+    border-color: #BF2026; /* Rojo intenso al enfocar */
+    background-color: #FFF; /* Blanco puro */
+}
+
+/* Login button */
+.login-btn {
+    background-color: #BF2026; /* Rojo intenso */
+    color: #FFFFFF; /* Blanco puro */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px; /* Bordes suaves */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #000000; /* Negro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+/* Small text (optional) */
+.login-container p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #323E48; /* Azul grisáceo */
+}
