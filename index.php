@@ -33,18 +33,29 @@
                 $errorMessage = 'Por favor, debes de ingresar la contraseña.';
             } else {
                 // Consultar la tabla usuariologin
-                $sql = "SELECT * FROM usuariologin WHERE usuario = ? AND contrasena = ?";
+                $sql = "SELECT * FROM usuariologin WHERE usuario = ?";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ss", $usuario, $contrasena);
+                $stmt->bind_param("s", $usuario);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-                    // Inicio de sesión exitoso
-                    $_SESSION['usuario'] = $usuario; // Guardar el usuario en la sesión
-                    echo "<script>alert('Inicio de sesión exitoso.'); window.location.href = 'pages/consulta.php';</script>";
+                    $row = $result->fetch_assoc();
+                    $hashedPassword = $row['contrasena']; // Contraseña almacenada en la base de datos
+
+                    // Generar el hash de la contraseña ingresada
+                    $inputHashedPassword = hash('sha512', $contrasena);
+
+                    if ($inputHashedPassword === $hashedPassword) {
+                        // Inicio de sesión exitoso
+                        $_SESSION['usuario'] = $usuario; // Guardar el usuario en la sesión
+                        echo "<script>alert('Inicio de sesión exitoso.'); window.location.href = 'pages/consulta.php';</script>";
+                    } else {
+                        // Contraseña incorrecta
+                        $errorMessage = 'Usuario o contraseña incorrectos.';
+                    }
                 } else {
-                    // Credenciales incorrectas
+                    // Usuario no encontrado
                     $errorMessage = 'Usuario o contraseña incorrectos.';
                 }
 

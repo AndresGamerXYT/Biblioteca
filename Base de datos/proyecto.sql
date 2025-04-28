@@ -96,7 +96,7 @@ CREATE TABLE `usuariologin` (
 --
 
 INSERT INTO `usuariologin` (`id`, `usuario`, `contrasena`) VALUES
-(1, 'Andre123', '1234');
+(1, 'Andre123', '4eeecde1290cfe21567b65157ed425a23ee7486572dc9c7fcff5c6bc5af25f57eac4ce08d091cc1427be4faf9fe8ce5bb7729b557ca5b0e7f3476fda6e61f728');
 
 --
 -- Índices para tablas volcadas
