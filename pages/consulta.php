@@ -302,14 +302,13 @@ if (!isset($_SESSION['usuario'])) {
                         <input type="email" name="Email" id="Email" required>
                     </div>
 
-                    <button type="submit" class="btn-submit">Guardar</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <button type="submit" class="btn-submit">Guardar</button>
+                        <p style="margin: 0; color: black; font-size: 0.9rem;">&copy; 2025 Biblioteca. Todos los derechos reservados.</p>
+                    </div>
                 </form>
 
                 <div id="mensajeRespuesta" class="mensaje-respuesta" style="display: none;"></div>
-
-                <footer style="text-align: center; margin-top: 20px; color: black; background: none; border: none; padding: 0; pointer-events: none;">
-                    <p>&copy; 2025 Biblioteca. Todos los derechos reservados.</p>
-                </footer>
 
                 <script>
                     document.getElementById('btnConsultar').addEventListener('click', function () {
