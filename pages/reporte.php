@@ -211,6 +211,9 @@ $conexion->cerrarConexion();
         border: 1px solid #ddd;
         padding: 12px;
         text-align: left;
+        word-wrap: break-word; /* Permite que el texto largo se ajuste */
+        word-break: break-word; /* Rompe palabras largas si es necesario */
+        max-width: 300px; /* Define un ancho máximo para las celdas */
     }
 
     table th {
@@ -221,6 +224,11 @@ $conexion->cerrarConexion();
 
     table tr:hover {
         background-color: #f1f1f1;
+    }
+
+    table th:first-child, table td:first-child {
+        width: 70px; /* Ajusta el ancho según sea necesario */
+        text-align: center; /* Centra el contenido */
     }
 </style>
 <body>
