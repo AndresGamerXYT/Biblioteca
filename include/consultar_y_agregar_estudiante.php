@@ -45,7 +45,7 @@ $email = isset($_POST['Email']) ? $_POST['Email'] : null;
 $tipo_de_solicitud = isset($_POST['Tipo_de_solicitud']) ? $_POST['Tipo_de_solicitud'] : null;
 $matricula = isset($_POST['Matricula']) ? $_POST['Matricula'] : null;
 $cedula = isset($_POST['Cedula']) ? $_POST['Cedula'] : null;
-$tipo_de_persona = isset($_POST['Tipo_de_usuario']) ? ucfirst(strtolower($_POST['Tipo_de_usuario'])) : 'Visitante'; // Convertir a formato capitalizado
+$tipo_de_persona = isset($_POST['Tipo_de_usuario']) ? ucfirst(strtolower($_POST['Tipo_de_usuario'])) : 'Visitante';
 
 error_log("Tipo_de_usuario recibido: " . $_POST['Tipo_de_usuario']);
 
@@ -80,10 +80,23 @@ $sqlInsert = "INSERT INTO registro (nombre, apellido, sexo, telefono, email, tip
 $stmtInsert = $conn->prepare($sqlInsert);
 $stmtInsert->bind_param("sssssssss", $nombre, $apellido, $sexo, $telefono, $email, $tipo_de_solicitud, $matricula, $cedula, $tipo_de_persona);
 
+if (!$stmtInsert) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al preparar la consulta: ' . $conn->error
+    ]);
+    $conn->close();
+    exit;
+}
+
 if ($stmtInsert->execute()) {
     echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
+    
 } else {
-    echo json_encode(['success' => false, 'message' => 'Error al registrar los datos.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al registrar los datos: ' . $stmtInsert->error
+    ]);
 }
 
 $stmtInsert->close();
