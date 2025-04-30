@@ -195,7 +195,9 @@ if (!isset($_SESSION['usuario'])) {
 
                     <div class="form-group" id="grupoMatricula">
                         <label for="Matricula">Matrícula</label>
-                        <input type="text" name="Matricula" id="Matricula">
+                        <input type="text" name="Matricula" id="Matricula" required
+                                placeholder="0000-0000" 
+                                title="El formato debe ser 0000-0000" maxlength="9">
                         <div class="form-group" style="margin-top: 10px;">
                             <button type="button" id="btnConsultar" class="btn-submit">Consultar Matrícula</button>
                         </div>
@@ -209,33 +211,59 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
 
                     <script>
-                        function actualizarCampos() {
+                         function actualizarCampos() {
                             const tipoUsuario = document.getElementById("Tipo_de_usuario").value;
                             const grupoMatricula = document.getElementById("grupoMatricula");
                             const grupoCedula = document.getElementById("grupoCedula");
+                            const cedulaInput = document.getElementById("Cedula");
 
                             if (tipoUsuario === "estudiante") {
                                 grupoMatricula.style.display = "block";
                                 grupoCedula.style.display = "none";
+                            
+                                cedulaInput.removeAttribute("required");
                             } else if (tipoUsuario === "maestros" || tipoUsuario === "administrativo") {
                                 grupoMatricula.style.display = "none";
                                 grupoCedula.style.display = "block";
+                             
+                                cedulaInput.setAttribute("required", "");
                             } else if (tipoUsuario === "visitante") {
                                 grupoMatricula.style.display = "none";
                                 grupoCedula.style.display = "block";
+                             
+                                cedulaInput.setAttribute("required", "");
                             } else {
                                 grupoMatricula.style.display = "none";
                                 grupoCedula.style.display = "none";
+                               
+                                cedulaInput.removeAttribute("required");
                             }
                         }
 
-                        // Ocultar todo al cargar por si acaso
+
                         window.onload = function () {
                             actualizarCampos();
                         }
-                    </script>
 
+                    </script>
                     <script>
+                        document.getElementById('Matricula').addEventListener('input', function (e) {
+                            let value = e.target.value.replace(/-/g, '');
+                            value = value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+
+                            if (value.length > 8) {
+                                value = value.slice(0, 8); // Limita a 8 dígitos
+                            }
+
+                            if (value.length > 4) {
+                                value = value.slice(0, 4) + '-' + value.slice(4);
+                            }
+
+                            e.target.value = value;
+                        });
+
+                    </script>
+                    <script> 
                         document.getElementById('Cedula').addEventListener('input', function (e) {
                             let value = e.target.value.replace(/-/g, ''); // Eliminar todos los guiones existentes
                             value = value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
